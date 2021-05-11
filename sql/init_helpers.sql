@@ -42,6 +42,20 @@ CREATE OR REPLACE FUNCTION public.lnl_random_parent_name()
                 $FUNCTION$;
 
 
+CREATE OR REPLACE FUNCTION public.lnl_random_learner_name()
+                   RETURNS text
+                  LANGUAGE sql
+                  VOLATILE
+                        AS
+                $FUNCTION$
+                           SELECT name
+                             FROM learner_first_names
+                           ORDER
+                               BY random()
+                             LIMIT 1;
+                $FUNCTION$;
+
+
 DROP TYPE IF EXISTS lnl_parent_referer CASCADE;
 
 CREATE TYPE lnl_parent_referer AS ENUM (
