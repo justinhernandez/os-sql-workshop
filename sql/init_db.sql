@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS lnl_parent_first_names;
 CREATE TABLE lnl_parent_first_names (
 
   id               SERIAL PRIMARY KEY,
-  name             TEXT
+  name             TEXT NOT NULL
 
 );
 
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS lnl_parent_last_names;
 CREATE TABLE lnl_parent_last_names (
 
   id               SERIAL PRIMARY KEY,
-  name             TEXT
+  name             TEXT NOT NULL
 
 );
 
@@ -34,7 +34,7 @@ DROP TABLE IF EXISTS lnl_learner_first_names;
 CREATE TABLE lnl_learner_first_names (
 
   id               SERIAL PRIMARY KEY,
-  name             TEXT
+  name             TEXT NOT NULL
 
 );
 
@@ -67,7 +67,7 @@ CREATE TABLE lnl_enrollments (
 
   uid              UUID DEFAULT uuid_generate_v4(),
   learner_uid      UUID NOT NULL,
-  topic            TEXT,
+  topic            TEXT NOT NULL,
   enrolled_at      TIMESTAMP WITH TIME ZONE NOT NULL
 
 );

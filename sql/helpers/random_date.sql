@@ -1,10 +1,10 @@
 
 
 DROP FUNCTION IF EXISTS lnl_random_timestamptz(start_date timestamptz,
-                                                 end_date timestamptz);
+                                               end_date timestamptz);
 ​
 CREATE OR REPLACE FUNCTION public.lnl_random_timestamptz(start_date timestamptz,
-                                                           end_date timestamptz)
+                                                         end_date timestamptz)
                    RETURNS timestamptz
                   LANGUAGE sql
                   VOLATILE

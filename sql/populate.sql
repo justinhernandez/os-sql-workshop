@@ -29,9 +29,9 @@ WITH base_rows AS (
 
 )
 INSERT INTO lnl_parents(name, 
-                    created_at,
-                    last_login,
-                    referer)
+                        created_at,
+                        last_login,
+                        referer)
   SELECT name,
          created_at,
          -- create last_login here to ensure that last_login > created_at
@@ -73,8 +73,8 @@ WITH base_rows AS (
 
 )
 INSERT INTO lnl_learners(parent_uid,
-                     name,
-                     age)
+                         name,
+                         age)
   SELECT parent_uid,
          name,
          age
@@ -115,8 +115,8 @@ WITH base_rows AS (
 
 )
 INSERT INTO lnl_enrollments(learner_uid,
-                        topic,
-                        enrolled_at)
+                            topic,
+                            enrolled_at)
   SELECT learner_uid,
          topic,
          enrolled_at

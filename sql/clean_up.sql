@@ -10,10 +10,10 @@ DROP TYPE IF EXISTS lnl_topic CASCADE;
 -- drop functions
 
 DROP FUNCTION IF EXISTS lnl_random_timestamptz(start_date timestamptz,
-                                                 end_date timestamptz);
+                                               end_date timestamptz);
 
 DROP FUNCTION IF EXISTS lnl_random_integer(low integer,
-                                          high integer);
+                                           high integer);
 
 DROP FUNCTION IF EXISTS lnl_random_learner_name();
 
