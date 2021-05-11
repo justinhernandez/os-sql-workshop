@@ -1,8 +1,8 @@
 
 
-DROP FUNCTION IF EXISTS lnl_random_learner_name();
+DROP FUNCTION IF EXISTS lnl_learner_name();
 
-CREATE OR REPLACE FUNCTION public.lnl_random_learner_name()
+CREATE OR REPLACE FUNCTION public.lnl_learner_name()
                    RETURNS text
                   LANGUAGE sql
                   VOLATILE
@@ -16,6 +16,6 @@ CREATE OR REPLACE FUNCTION public.lnl_random_learner_name()
                 $FUNCTION$;
 
 
-SELECT lnl_random_learner_name();
+SELECT lnl_learner_name();
 
   

@@ -26,10 +26,10 @@ CREATE TYPE lnl_topic AS ENUM (
 );
 
 
-DROP FUNCTION IF EXISTS lnl_random_topic();
+DROP FUNCTION IF EXISTS lnl_topic();
 
-CREATE OR REPLACE FUNCTION public.lnl_random_topic()
-                   RETURNS topic
+CREATE OR REPLACE FUNCTION public.lnl_topic()
+                   RETURNS lnl_topic
                   LANGUAGE sql
                   VOLATILE
                         AS
@@ -42,6 +42,6 @@ CREATE OR REPLACE FUNCTION public.lnl_random_topic()
                 $FUNCTION$;
 
 
-SELECT lnl_random_topic();
+SELECT lnl_topic();
 
   

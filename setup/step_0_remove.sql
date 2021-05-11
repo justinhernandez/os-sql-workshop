@@ -15,9 +15,9 @@ DROP FUNCTION IF EXISTS lnl_random_timestamptz(start_date timestamptz,
 DROP FUNCTION IF EXISTS lnl_random_integer(low integer,
                                            high integer);
 
-DROP FUNCTION IF EXISTS lnl_random_learner_name();
+DROP FUNCTION IF EXISTS lnl_learner_name();
 
-DROP FUNCTION IF EXISTS lnl_random_parent_name();
+DROP FUNCTION IF EXISTS lnl_parent_name();
 
 DROP TYPE IF EXISTS lnl_parent_referer CASCADE;
 

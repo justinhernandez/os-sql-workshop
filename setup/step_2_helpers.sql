@@ -22,7 +22,7 @@ CREATE OR REPLACE FUNCTION public.lnl_random_integer(low integer,
                 $FUNCTION$;
 
 
-CREATE OR REPLACE FUNCTION public.lnl_random_parent_name()
+CREATE OR REPLACE FUNCTION public.lnl_parent_name()
                    RETURNS text
                   LANGUAGE sql
                   VOLATILE
@@ -42,7 +42,7 @@ CREATE OR REPLACE FUNCTION public.lnl_random_parent_name()
                 $FUNCTION$;
 
 
-CREATE OR REPLACE FUNCTION public.lnl_random_learner_name()
+CREATE OR REPLACE FUNCTION public.lnl_learner_name()
                    RETURNS text
                   LANGUAGE sql
                   VOLATILE
@@ -59,31 +59,24 @@ CREATE OR REPLACE FUNCTION public.lnl_random_learner_name()
 DROP TYPE IF EXISTS lnl_parent_referer CASCADE;
 
 CREATE TYPE lnl_parent_referer AS ENUM (
+  'none',
   'facebook',
   'google',
   'bing',
   'instagram'
 );
 
-CREATE OR REPLACE FUNCTION public.lnl_random_parent_referer()
+CREATE OR REPLACE FUNCTION public.lnl_parent_referer()
                    RETURNS lnl_parent_referer
                   LANGUAGE sql
                   VOLATILE
                         AS
                 $FUNCTION$
-                           WITH targets AS (
-
-                             SELECT unnest(enum_range(NULL::lnl_parent_referer)) as referer 
-
-                           )
-                           SELECT referer 
-                             FROM targets t 
+                           SELECT parent_referer 
+                             FROM (SELECT unnest(enum_range(NULL::lnl_parent_referer)) as parent_referer) sub 
                            ORDER 
-                               BY referer 
-                            LIMIT 1
-                            -- use offset to allow for null values
-                            OFFSET (SELECT random_integer(0, ((SELECT count(*)
-                                                                 FROM targets) + 1)::integer));
+                               BY random() 
+                            LIMIT 1;
                 $FUNCTION$;
 
 
@@ -112,7 +105,7 @@ CREATE TYPE lnl_topic AS ENUM (
   'Writing'
 );
 
-CREATE OR REPLACE FUNCTION public.lnl_random_topic()
+CREATE OR REPLACE FUNCTION public.lnl_topic()
                    RETURNS lnl_topic
                   LANGUAGE sql
                   VOLATILE
