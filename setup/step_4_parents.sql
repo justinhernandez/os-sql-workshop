@@ -4,7 +4,7 @@
 
 DROP TABLE IF EXISTS lnl_populate_settings;
 
-CREATE TEMP TABLE lnl_populate_settings AS 
+CREATE TABLE lnl_populate_settings AS 
          -- tweak this number to generate more or less rows
   SELECT 250000 AS parents_to_generate,
          3 AS child_age_minimum,
