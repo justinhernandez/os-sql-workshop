@@ -65,7 +65,7 @@ WITH base_rows AS (
                            FROM _populate_settings), 18) AS age
     FROM base_rows b
          -- if we put lnl_random_learner_name into the left join lateral it will cache the results
-         -- so we return run and set the generate series to the appropriate number of children
+         -- so we select 1 and set the generate series to the number of children we want to create
          LEFT JOIN LATERAL (SELECT 1
                               -- generate a random number of children per parent
                               FROM generate_series(1, b.child_count)) AS child
