@@ -1,8 +1,8 @@
 
 
-DROP TYPE IF EXISTS topic CASCADE;
+DROP TYPE IF EXISTS lnl_topic CASCADE;
 
-CREATE TYPE topic AS ENUM (
+CREATE TYPE lnl_topic AS ENUM (
   'Animals',
   'Cooking & Baking',
   'Dance',
@@ -26,22 +26,22 @@ CREATE TYPE topic AS ENUM (
 );
 
 
-DROP FUNCTION IF EXISTS random_topic();
+DROP FUNCTION IF EXISTS lnl_random_topic();
 
-CREATE OR REPLACE FUNCTION public.random_topic()
+CREATE OR REPLACE FUNCTION public.lnl_random_topic()
                    RETURNS topic
                   LANGUAGE sql
                   VOLATILE
                         AS
                 $FUNCTION$
                            SELECT topic 
-                             FROM (SELECT unnest(enum_range(NULL::topic)) as topic) sub 
+                             FROM (SELECT unnest(enum_range(NULL::lnl_topic)) as topic) sub 
                            ORDER 
                                BY random() 
                             LIMIT 1;
                 $FUNCTION$;
 
 
-SELECT random_topic();
+SELECT lnl_random_topic();
 
   

@@ -1,8 +1,8 @@
 
 
-DROP TYPE IF EXISTS parent_referer CASCADE;
+DROP TYPE IF EXISTS lnl_parent_referer CASCADE;
 
-CREATE TYPE parent_referer AS ENUM (
+CREATE TYPE lnl_parent_referer AS ENUM (
   'facebook',
   'google',
   'bing',
@@ -10,17 +10,17 @@ CREATE TYPE parent_referer AS ENUM (
 );
 
 
-DROP FUNCTION IF EXISTS random_parent_referer();
+DROP FUNCTION IF EXISTS lnl_random_parent_referer();
 
 CREATE OR REPLACE FUNCTION public.random_parent_referer()
-                   RETURNS parent_referer
+                   RETURNS lnl_parent_referer
                   LANGUAGE sql
                   VOLATILE
                         AS
                 $FUNCTION$
                            WITH targets AS (
 
-                             SELECT unnest(enum_range(NULL::parent_referer)) as referer 
+                             SELECT unnest(enum_range(NULL::lnl_parent_referer)) as referer 
 
                            )
                            SELECT referer 
@@ -34,6 +34,6 @@ CREATE OR REPLACE FUNCTION public.random_parent_referer()
                 $FUNCTION$;
 
 
-SELECT random_parent_referer();
+SELECT lnl_random_parent_referer();
 
   

@@ -2,45 +2,45 @@
 
 -- database setup
 
-DROP DATABASE IF EXISTS os_sql_demo;
+-- DROP DATABASE IF EXISTS lnl_sql_demo;
 
-CREATE DATABASE os_sql_demo;
+-- CREATE DATABASE lnl_sql_demo;
 
-USE DATABASE os_sql_demo;
+-- USE DATABASE lnl_sql_demo;
 
 
 -- table setup
 
-DROP TABLE IF EXISTS parent_first_names;
+DROP TABLE IF EXISTS lnl_parent_first_names;
 
-CREATE TABLE parent_first_names (
-
-  id               SERIAL PRIMARY KEY,
-  name             TEXT
-
-);
-
-DROP TABLE IF EXISTS parent_last_names;
-
-CREATE TABLE parent_last_names (
+CREATE TABLE lnl_parent_first_names (
 
   id               SERIAL PRIMARY KEY,
   name             TEXT
 
 );
 
-DROP TABLE IF EXISTS learner_first_names;
+DROP TABLE IF EXISTS lnl_parent_last_names;
 
-CREATE TABLE learner_first_names (
+CREATE TABLE lnl_parent_last_names (
 
   id               SERIAL PRIMARY KEY,
   name             TEXT
 
 );
 
-DROP TABLE IF EXISTS parents;
+DROP TABLE IF EXISTS lnl_learner_first_names;
 
-CREATE TABLE parents (
+CREATE TABLE lnl_learner_first_names (
+
+  id               SERIAL PRIMARY KEY,
+  name             TEXT
+
+);
+
+DROP TABLE IF EXISTS lnl_parents;
+
+CREATE TABLE lnl_parents (
 
   uid              UUID DEFAULT uuid_generate_v4(),
   name             TEXT NOT NULL,
@@ -50,9 +50,9 @@ CREATE TABLE parents (
 
 );
 
-DROP TABLE IF EXISTS learners;
+DROP TABLE IF EXISTS lnl_learners;
 
-CREATE TABLE learners (
+CREATE TABLE lnl_learners (
 
   uid              UUID DEFAULT uuid_generate_v4(),
   parent_uid       UUID NOT NULL,
@@ -61,9 +61,9 @@ CREATE TABLE learners (
 
 );
 
-DROP TABLE IF EXISTS enrollments;
+DROP TABLE IF EXISTS lnl_enrollments;
 
-CREATE TABLE enrollments (
+CREATE TABLE lnl_enrollments (
 
   uid              UUID DEFAULT uuid_generate_v4(),
   learner_uid      UUID NOT NULL,

@@ -17,25 +17,25 @@ CREATE TEMP TABLE _populate_settings AS
 
 -- parents
 
-TRUNCATE parents;
+TRUNCATE lnl_parents;
 
 WITH base_rows AS (
 
-  SELECT random_parent_name() AS name,
-         random_timestamptz('2021-01-01 12:0:01', now()) AS created_at,
-         random_parent_referer() AS parent_referer
+  SELECT lnl_random_parent_name() AS name,
+         lnl_random_timestamptz('2021-01-01 12:0:01', now()) AS created_at,
+         lnl_random_parent_referer() AS parent_referer
     FROM generate_series(1, (SELECT parents_to_generate
                                FROM _populate_settings))
 
 )
-INSERT INTO parents(name, 
+INSERT INTO lnl_parents(name, 
                     created_at,
                     last_login,
                     referer)
   SELECT name,
          created_at,
          -- create last_login here to ensure that last_login > created_at
-         random_timestamptz(created_at, now()) AS last_login,
+         lnl_random_timestamptz(created_at, now()) AS last_login,
          parent_referer
     FROM base_rows
  ORDER
@@ -46,13 +46,13 @@ INSERT INTO parents(name,
 
 -- learners
 
-TRUNCATE learners;
+TRUNCATE lnl_learners;
 
 WITH base_rows AS (
 
   -- select each parent to create learners...this will give 1 ~ 3x learners
   SELECT uid AS parent_uid,
-         random_integer(1, (SELECT child_limit
+         lnl_random_integer(1, (SELECT child_limit
                               FROM _populate_settings)) AS child_count
     FROM parents
 
@@ -60,11 +60,11 @@ WITH base_rows AS (
 
   SELECT parent_uid,
          -- generate here so each value is unique
-         random_learner_name() AS name,
-         random_integer((SELECT child_age_minimum
+         lnl_random_learner_name() AS name,
+         lnl_random_integer((SELECT child_age_minimum
                            FROM _populate_settings), 18) AS age
     FROM base_rows b
-         -- if we put random_learner_name into the left join lateral it will cache the results
+         -- if we put lnl_random_learner_name into the left join lateral it will cache the results
          -- so we return run and set the generate series to the appropriate number of children
          LEFT JOIN LATERAL (SELECT 1
                               -- generate a random number of children per parent
@@ -72,7 +72,7 @@ WITH base_rows AS (
                                                                       ON true
 
 )
-INSERT INTO learners(parent_uid,
+INSERT INTO lnl_learners(parent_uid,
                      name,
                      age)
   SELECT parent_uid,
@@ -87,13 +87,13 @@ INSERT INTO learners(parent_uid,
 
 -- enrollments
 
-TRUNCATE enrollments;
+TRUNCATE lnl_enrollments;
 
 WITH base_rows AS (
 
   SELECT l.uid AS learner_uid,
          p.created_at AS parent_created_at,
-         random_integer((SELECT enrollment_min
+         lnl_random_integer((SELECT enrollment_min
                               FROM _populate_settings), 
                         (SELECT enrollment_max
                               FROM _populate_settings)) AS enrollment_count
@@ -105,8 +105,8 @@ WITH base_rows AS (
 
   SELECT learner_uid,
          -- generate here so each value is unique
-         random_topic() AS topic,
-         random_timestamptz(parent_created_at, now()) AS enrolled_at
+         lnl_random_topic() AS topic,
+         lnl_random_timestamptz(parent_created_at, now()) AS enrolled_at
     FROM base_rows b
          -- same generator pattern as learners
          LEFT JOIN LATERAL (SELECT 1
@@ -114,7 +114,7 @@ WITH base_rows AS (
                                                                            ON true
 
 )
-INSERT INTO enrollments(learner_uid,
+INSERT INTO lnl_enrollments(learner_uid,
                         topic,
                         enrolled_at)
   SELECT learner_uid,

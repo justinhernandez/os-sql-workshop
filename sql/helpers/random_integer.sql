@@ -1,7 +1,10 @@
 
 
-CREATE OR REPLACE FUNCTION public.random_integer(low integer,
-                                                 high integer)
+DROP FUNCTION IF EXISTS lnl_random_integer(low integer,
+                                          high integer);
+
+CREATE OR REPLACE FUNCTION public.lnl_random_integer(low integer,
+                                                     high integer)
                    RETURNS integer
                   LANGUAGE sql
                   VOLATILE

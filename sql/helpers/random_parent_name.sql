@@ -1,8 +1,8 @@
 
 
-DROP FUNCTION IF EXISTS random_parent_name();
+DROP FUNCTION IF EXISTS lnl_random_parent_name();
 
-CREATE OR REPLACE FUNCTION public.random_parent_name()
+CREATE OR REPLACE FUNCTION public.lnl_random_parent_name()
                    RETURNS text
                   LANGUAGE sql
                   VOLATILE
@@ -22,6 +22,6 @@ CREATE OR REPLACE FUNCTION public.random_parent_name()
                 $FUNCTION$;
 
 
-SELECT random_parent_name();
+SELECT lnl_random_parent_name();
 
   
