@@ -16,6 +16,7 @@ What values do we want to return?
 
 -- query
 
+
 EXPLAIN
 
 WITH fb_ig_parents AS (
@@ -120,6 +121,9 @@ ORDER
 DROP INDEX IF EXISTS lnl_challenge_0_1_idx;
 DROP INDEX IF EXISTS lnl_challenge_0_2_idx;
 DROP INDEX IF EXISTS lnl_challenge_0_3_idx;
+
+
+-- partial index
 
 CREATE INDEX lnl_challenge_0_1_idx
     ON lnl_parents
