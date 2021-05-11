@@ -33,7 +33,7 @@ function build(table, method, count = 50) {
 }
 
 // collect faker collections
-build("parent_first_names", Faker.name.firstName);
-build("parent_last_names", Faker.name.lastName);
-build("learner_first_names", Faker.name.firstName, 1000);
+build("lnl_parent_first_names", Faker.name.firstName);
+build("lnl_parent_last_names", Faker.name.lastName);
+build("lnl_learner_first_names", Faker.name.firstName, 1000);
 writeFile();

@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS _populate_settings;
 
 CREATE TEMP TABLE _populate_settings AS 
          -- tweak this number to generate more or less rows
-  SELECT 500000 AS parents_to_generate,
+  SELECT 250000 AS parents_to_generate,
          3 AS child_age_minimum,
          -- x amount of parents
          3 AS child_limit,
@@ -16,6 +16,7 @@ CREATE TEMP TABLE _populate_settings AS
 
 
 -- parents
+-- ~ 20s @ 250k parents
 
 TRUNCATE lnl_parents;
 

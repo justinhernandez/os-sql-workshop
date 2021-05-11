@@ -6,7 +6,12 @@
 
 -- CREATE DATABASE lnl_sql_demo;
 
--- USE DATABASE lnl_sql_demo;
+-- \c lnl_sql_demo;
+
+
+-- extensions
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 
 -- table setup

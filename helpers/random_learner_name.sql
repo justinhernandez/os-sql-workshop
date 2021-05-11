@@ -9,7 +9,7 @@ CREATE OR REPLACE FUNCTION public.lnl_learner_name()
                         AS
                 $FUNCTION$
                            SELECT name
-                             FROM learner_first_names
+                             FROM lnl_learner_first_names
                            ORDER
                                BY random()
                              LIMIT 1;

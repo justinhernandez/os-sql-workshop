@@ -1,6 +1,7 @@
 
 
 -- enrollments
+-- ~ 18s @ 250k parents
 
 TRUNCATE lnl_enrollments;
 

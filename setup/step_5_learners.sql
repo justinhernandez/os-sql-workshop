@@ -1,6 +1,7 @@
 
 
 -- learners
+-- ~ 2m 30s @ 250k parents
 
 TRUNCATE lnl_learners;
 

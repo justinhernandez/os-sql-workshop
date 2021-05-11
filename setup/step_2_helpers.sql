@@ -29,13 +29,13 @@ CREATE OR REPLACE FUNCTION public.lnl_parent_name()
                         AS
                 $FUNCTION$
                            SELECT (SELECT name
-                                     FROM parent_first_names
+                                     FROM lnl_parent_first_names
                                    ORDER
                                        BY random()
                                      LIMIT 1)
                                   || ' ' ||
                                   (SELECT name
-                                     FROM parent_last_names
+                                     FROM lnl_parent_last_names
                                    ORDER
                                        BY random()
                                      LIMIT 1);
@@ -49,7 +49,7 @@ CREATE OR REPLACE FUNCTION public.lnl_learner_name()
                         AS
                 $FUNCTION$
                            SELECT name
-                             FROM learner_first_names
+                             FROM lnl_learner_first_names
                            ORDER
                                BY random()
                              LIMIT 1;
