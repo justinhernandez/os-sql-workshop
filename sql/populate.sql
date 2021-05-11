@@ -5,7 +5,7 @@
 DROP TABLE IF EXISTS _populate_settings;
 
 CREATE TEMP TABLE _populate_settings AS 
-
+         -- tweak this number to generate more or less rows
   SELECT 250000 AS parents_to_generate,
          3 AS child_age_minimum,
          -- x amount of parents
@@ -64,6 +64,7 @@ WITH base_rows AS (
          lnl_random_integer((SELECT child_age_minimum
                            FROM _populate_settings), 18) AS age
     FROM base_rows b
+         -- trick to generate multiple rows
          -- if we put lnl_random_learner_name into the left join lateral it will cache the results
          -- so we select 1 and set the generate series to the number of children we want to create
          LEFT JOIN LATERAL (SELECT 1
