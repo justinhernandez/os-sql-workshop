@@ -30,14 +30,14 @@ CREATE OR REPLACE FUNCTION public.lnl_parent_name()
                 $FUNCTION$
                            SELECT (SELECT name
                                      FROM lnl_parent_first_names
-                                   ORDER
-                                       BY random()
+                                   OFFSET (SELECT lnl_random_integer(1, (SELECT count(*)::integer
+                                                                           FROM lnl_parent_first_names)))
                                      LIMIT 1)
                                   || ' ' ||
                                   (SELECT name
                                      FROM lnl_parent_last_names
-                                   ORDER
-                                       BY random()
+                                   OFFSET (SELECT lnl_random_integer(1, (SELECT count(*)::integer
+                                                                           FROM lnl_parent_last_names)))
                                      LIMIT 1);
                 $FUNCTION$;
 
@@ -50,9 +50,9 @@ CREATE OR REPLACE FUNCTION public.lnl_learner_name()
                 $FUNCTION$
                            SELECT name
                              FROM lnl_learner_first_names
-                           ORDER
-                               BY random()
-                             LIMIT 1;
+                             LIMIT 1
+                             OFFSET (SELECT lnl_random_integer(1, (SELECT count(*)::integer
+                                                                     FROM lnl_learner_first_names)));
                 $FUNCTION$;
 
 

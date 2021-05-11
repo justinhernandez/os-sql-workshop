@@ -10,14 +10,14 @@ CREATE OR REPLACE FUNCTION public.lnl_parent_name()
                 $FUNCTION$
                            SELECT (SELECT name
                                      FROM lnl_parent_first_names
-                                   ORDER
-                                       BY random()
+                                   OFFSET (SELECT lnl_random_integer(1, (SELECT count(*)::integer
+                                                                           FROM lnl_parent_first_names)))
                                      LIMIT 1)
                                   || ' ' ||
                                   (SELECT name
                                      FROM lnl_parent_last_names
-                                   ORDER
-                                       BY random()
+                                   OFFSET (SELECT lnl_random_integer(1, (SELECT count(*)::integer
+                                                                           FROM lnl_parent_last_names)))
                                      LIMIT 1);
                 $FUNCTION$;
 

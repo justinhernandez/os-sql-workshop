@@ -10,9 +10,9 @@ CREATE OR REPLACE FUNCTION public.lnl_learner_name()
                 $FUNCTION$
                            SELECT name
                              FROM lnl_learner_first_names
-                           ORDER
-                               BY random()
-                             LIMIT 1;
+                             LIMIT 1
+                             OFFSET (SELECT lnl_random_integer(1, (SELECT count(*)::integer
+                                                                     FROM lnl_learner_first_names)));
                 $FUNCTION$;
 
 
