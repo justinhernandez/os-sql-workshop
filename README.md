@@ -2,21 +2,24 @@
 
 ### Setup
 
+Takes ~ 5 - 10 minutes to setup.
 
-4. Import / run the file [sql/init_db.sql](./sql/init_db.sql) into your database
-5. Import / run the file [sql/init_helpers.sql](./sql/init_helpers.sql) into your database
-6. Finally run the file [sql/populate.sql](./sql/populate.sql) to fill your database with test data. This should take ~ 2 minutes and generate ~ 6 million rows of data.
+1. [Initialize database](./setup/step_1_init.sql)
+2. [Import generator helper functions](./setup/step_2_helpers.sql)
+3. [Import faker data](./setup/step_3_faker.sql)
+4. [Generate parents table](./setup/step_4_parents.sql)
+5. [Build learners table](./setup/step_5_learners.sql)
+6. [Create enrollments](./setup/step_6_enrollments.sql) 
 
 *Optional*
 
-- [Clean up script](./sql/clean_up.sql) to remove lnl type, function, and table definitions
+- [Clean up script](./setup/step_0_remove.sql) to remove lnl type, function, and table definitions
 
 ### Challenge
 
-1. wow
-2. neat
-3. cool
-
+1. [Challenge 0](./challenge/0.sql)
+2. [Challenge 1](./challenge/1.sql)
+3. [Challenge 2](./challenge/2.sql)
 
 ### How to generate fake data
 

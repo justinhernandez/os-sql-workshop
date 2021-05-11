@@ -1,13 +1,20 @@
 
 
-What topics are the most popular with learners that have taken 8 or more classes?
+-- question
 
+What topics are the most popular with learners that have taken 8 or more classes?
 
 Bonus: What is their parent referral breakdown?
 
 
+-- query
 
-tricky cuz you can answer the first q with only enrollment table.
 
 
+-- indices created
+
+
+
+ -- explanation and reasonings
+ -- why did these indices work?
 

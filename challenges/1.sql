@@ -1,11 +1,22 @@
 
 
+-- question
 
-Learners that took classes during the month of February, which classes were the most popular?
+Which enrollments topics were the most popular during the month of February?
+
+Bonus:
+Can you do a breakdown by month?
+Hint: https://www.postgresqltutorial.com/postgresql-extract/
+
+-- query
 
 
-Bonus: Which topics? were the most popular with learners that took 3 or more classes?
+
+-- indices created
 
 
 
+ -- explanation and reasonings
+ -- why did these indices work?
 
+  

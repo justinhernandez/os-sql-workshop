@@ -1,7 +1,7 @@
 
 
 -- enrollments
--- ~ 3m 15s   @ 250k parents
+-- ~ 3m 15s @ 250k parents
 
 TRUNCATE lnl_enrollments;
 
@@ -18,9 +18,11 @@ INSERT INTO lnl_enrollments(learner_uid,
          LEFT JOIN LATERAL(SELECT lnl_topic() AS topic,
                                   lnl_random_timestamptz(p.created_at, now()) AS enrolled_at
                              FROM generate_series(1, lnl_random_integer((SELECT enrollment_min
-                                                                           FROM lnl_populate_settings), 
+                                                                           FROM lnl_populate_settings
+                                                                          WHERE l.uid = l.uid), 
                                                                         (SELECT enrollment_max
-                                                                           FROM lnl_populate_settings))) series
+                                                                           FROM lnl_populate_settings
+                                                                          WHERE l.uid = l.uid))) series
                             WHERE l.uid = l.uid) AS enrollment
                                                  ON true
    WHERE l.parent_uid = p.uid

@@ -9,14 +9,14 @@ CREATE TEMP TABLE lnl_populate_settings AS
   SELECT 250000 AS parents_to_generate,
          3 AS child_age_minimum,
          -- x amount of parents
-         4 AS child_limit,
+         5 AS child_limit,
          -- x amount of children
          1 AS enrollment_min,
          20 AS enrollment_max;
 
 
 -- parents
--- ~ 20s @ 250k parents
+-- ~ 25s @ 500k parents
 
 TRUNCATE lnl_parents;
 
