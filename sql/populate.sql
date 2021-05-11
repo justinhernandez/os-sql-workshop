@@ -54,7 +54,7 @@ WITH base_rows AS (
   SELECT uid AS parent_uid,
          lnl_random_integer(1, (SELECT child_limit
                               FROM _populate_settings)) AS child_count
-    FROM parents
+    FROM lnl_parents
 
 ), base_rows2 AS (
 
@@ -97,8 +97,8 @@ WITH base_rows AS (
                               FROM _populate_settings), 
                         (SELECT enrollment_max
                               FROM _populate_settings)) AS enrollment_count
-    FROM learners l,
-         parents p
+    FROM lnl_learners l,
+         lnl_parents p
    WHERE l.parent_uid = p.uid
 
 ), base_rows2 AS (
